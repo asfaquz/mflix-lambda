@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: User Management API
+
+Globals:
+  Function:
+    Timeout: 10
+    Runtime: python3.11
+    MemorySize: 128
+    Architectures: [x86_64]
+
+Resources:
+
+  CreateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: create-user
+      CodeUri: src/create_user/
+      Handler: app.lambda_handler
+      Events:
+        CreateUserAPI:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: POST
+
+  ListUsersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: list-users
+      CodeUri: src/list_users/
+      Handler: app.lambda_handler
+      Events:
+        ListUsersAPI:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: GET
