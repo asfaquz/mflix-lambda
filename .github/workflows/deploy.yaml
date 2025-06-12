@@ -38,4 +38,5 @@ jobs:
                      --capabilities CAPABILITY_IAM \
                      --region us-east-1 \
                      --no-fail-on-empty-changeset \
-                     --no-confirm-changeset
+                     --no-confirm-changeset \
+                     --resolve-s3
